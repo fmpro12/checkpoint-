@@ -4,10 +4,10 @@ const bodyParser = require('body-parser')
 const server = express()
 const path = require('path')
 const cors = require('cors')
-const distFolder = path.join(__dirname, '../fans-league/build')
+const distFolder = path.join(__dirname, '../build')
 const users = require('../server/users/server')
 
-
+console.log(distFolder)
 server.use(cors())
 server.use(bodyParser.json());
 server.use("/api/users/", users);
