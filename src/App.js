@@ -8,7 +8,7 @@ class App extends Component {
     this.state = {
       firstname: '',
       lastname: '',
-      status: '',
+      status: 'Available',
       hits: [],
       isLoading: false,
       error: null,
@@ -66,13 +66,12 @@ alert("User added")
           value={lastname}
           onChange={this.onChange}
         />
-        <input
-          type="text"
-          name="status"
-          value={status}
-          onChange={this.onChange}
-        />
-         <button type="submit">Add users</button>
+        <select value={status} onChange={this.onChange} name="status">        
+          <option value="Not Available">Not Available</option>
+          <option value="Vacation">Vacation</option>
+          <option  value="Available">Available</option>          
+        </select>
+        <input type="submit" value="Add User" />
       </form>
       <ul>
         {hits.map(item => <li>{item.firstname} {item.lastname} {item.status}</li>)}
