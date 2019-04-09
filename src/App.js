@@ -14,8 +14,7 @@ class App extends Component {
       error: null,
     };
     this.onChange = this.onChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleSubmit2 = this.handleSubmit2.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)    
   }
 
   componentDidMount() {
@@ -49,15 +48,6 @@ onChange (e) {
   }
 
 
-handleSubmit2 (event){
-  event.preventDefault();
-
-  axios.put('http://127.0.0.1:3010/api/users/userId', {
-    status: this.state.status
-  })
-  alert("User added")
-
-}
 
   render() {
     const {hits, firstname, lastname, status} = this.state
@@ -82,20 +72,12 @@ handleSubmit2 (event){
           <option  value="Available">Available</option>          
         </select>
         <input type="submit" value="Add User" />
-      </form>
-      <form onSubmit={this.handleSubmit2}>
+      </form>      
       <ul>
         {hits.map(item => <li key={item._id}> {item.firstname} {item.lastname} {item.status} 
-        <select key={item._id} value={status} onChange={this.onChange} name="status">
-        <option value="Not Available">Not Available</option>
-          <option value="Vacation">Vacation</option>
-          <option  value="Available">Available</option>  
-        </select>
-          <input type="submit" value="Submit" />
         </li>
         )}
       </ul>
-      </form>
       </div>
     )}}
 
