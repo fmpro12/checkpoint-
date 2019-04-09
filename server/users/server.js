@@ -16,6 +16,15 @@ router.get('/', (req, res) => {
 	.catch(e => res.status(400).send(e.message));
 });
 
+router.put('/:userId', (req, res) => {	 
+    User.findByIdAndUpdate(req.params.user_id,{$set:req.body}, function(err, result){
+        if(err){
+            console.log(err);
+        }
+        console.log("RESULT: " + result);
+        res.send('Done')
+    });
+})
 
 
 
