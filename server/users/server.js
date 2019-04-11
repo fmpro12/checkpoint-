@@ -15,11 +15,10 @@ router.get('/', (req, res) => {
 	.catch(e => res.status(400).send(e.message));
 });
 
-    router.put( '/:_id', ( req, res ) => {
-        console.log(req.body.body.status)
-        User.findByIdAndUpdate(req.params.user_id, req.body.body.status)
+    router.put( '/:user_id', ( req, res ) => {       
+        User.findByIdAndUpdate(req.params.user_id, req.body)
         .then(data => {
-           if(follower)
+           if(User)
            res.send(data);
            else
            res.status(404).send("Follower not found");

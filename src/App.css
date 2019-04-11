@@ -2,6 +2,16 @@
   text-align: center;
 }
 
+.option {
+  margin-left: 20px;
+  width: 250px;
+  display: flex;
+  direction: row;
+  margin-top: -10px
+}
+button {
+  display: flex;
+}
 
 ul {
   margin-top: 40px;
@@ -11,6 +21,11 @@ li{
   display: flex;
   flex-direction: row;
   margin-top: 20px;
+}
+
+.select {
+  width: 150px;
+
 }
 
 .new_status{
