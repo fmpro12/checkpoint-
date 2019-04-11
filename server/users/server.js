@@ -9,14 +9,15 @@ router.get('/', (req, res) => {
  });
 
  router.post('/', (req, res) => {
-	const post = new User(req.body);
-	post.save()
+	const item = new User(req.body);
+	item.save()
 	.then(data => res.send(data))
 	.catch(e => res.status(400).send(e.message));
 });
 
     router.put( '/:user_id', ( req, res ) => {       
         User.findByIdAndUpdate(req.params.user_id, req.body)
+        
         .then(data => {
            if(User)
            res.send(data);
