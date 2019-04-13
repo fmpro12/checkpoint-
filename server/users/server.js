@@ -10,22 +10,33 @@ router.get('/', (req, res) => {
 
  router.post('/', (req, res) => {
 	const item = new User(req.body);
-	item.save()
-	.then(data => res.send(data))
+    item.save()
+    .then(data => res.send(data))
 	.catch(e => res.status(400).send(e.message));
 });
 
     router.put( '/:user_id', ( req, res ) => {       
         User.findByIdAndUpdate(req.params.user_id, req.body)
-        
         .then(data => {
            if(User)
            res.send(data);
            else
-           res.status(404).send("Follower not found");
+           res.status(404).send("User not found");
        })
-       .catch (e => res.status(400).send("Follower not exist"));
+       .catch (e => res.status(400).send("User not exist"));
    });
     
+   router.delete( '/:user_id', ( req, res ) => {       
+    User.findByIdAndRemove(req.params.user_id)
+    .then(data => {
+       if(User)
+       res.send(data);
+       else
+       res.status(404).send("User not found");
+   })
+   .catch (e => res.status(400).send("User not exist"));
+});
+
+
 
 module.exports = router;

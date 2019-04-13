@@ -2,16 +2,6 @@
   text-align: center;
 }
 
-.option {
-  margin-left: 20px;
-  width: 250px;
-  display: flex;
-  direction: row;
-  margin-top: -10px
-}
-button {
-  display: flex;
-}
 
 ul {
   margin-top: 40px;

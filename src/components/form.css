@@ -1,0 +1,13 @@
+.submit {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.option {
+    position: absolute;
+    margin-left: 240px;
+    width: 250px;
+    display: flex;
+    direction: row;
+    margin-top: -10px;
+  }

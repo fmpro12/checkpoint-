@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import ChangeStatus from './components/ChangeStatus'
+import ChangeStatus from './components/AddUser'
 
 
 import "./App.css"

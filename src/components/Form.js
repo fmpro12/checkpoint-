@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import Select from 'react-select'
 import axios from 'axios'
+import './form.css'
+
+
+const style = {
+    witdth: 170
+}
 
 class Form extends Component {
     constructor(props) {
@@ -11,22 +17,24 @@ class Form extends Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.onChangeStatus = this.onChangeStatus.bind(this)
+        this.deleteUser = this.deleteUser.bind(this)
     }    
     handleSubmit(id, e){
         e.preventDefault();
         const status = {status: this.state.status.status }
-        console.log(status)
+        console.log(e)
         axios.put('http://127.0.0.1:3010/api/users/'+id, status)
         alert("Status Changed")
     }
 
-    // onChangeStatus = status => event => {
-    //     this.setState({
-    //         [status]: event
-    //     });
-    // }
+    deleteUser(id, e){
+        e.preventDefault();
+        console.log(e)
+        axios.delete('http://127.0.0.1:3010/api/users/'+id)
+        alert("User Deleted")
+    }
 
-    onChangeStatus = event =>{
+    onChangeStatus = event => {
         this.setState({status: event});
         
     }
@@ -38,11 +46,13 @@ class Form extends Component {
         <form className="option" onSubmit={(e) => this.handleSubmit(id, e) }>
           <Select  
             className="select"
+            style={style}
             value={this.state.status}
             options={options}          
             onChange={this.onChangeStatus}
             />
-          <button type="submit">Submit</button>
+          <button type="submit"className="submit">Change Status</button>
+          <button onClick={(e) => this.deleteUser(id, e)}>Delete</button>
         </form>   
       )
     }
