@@ -7,6 +7,7 @@
     "axios": "^0.18.0",
     "concurrently": "^4.1.0",
     "cors": "^2.8.5",
+    "http": "0.0.0",
     "mongoose": "^5.4.22",
     "path": "^0.12.7",
     "prop-types": "^15.7.2",
@@ -16,7 +17,11 @@
     "react-scripts": "2.1.5",
     "react-select": "^2.4.2",
     "redux": "^4.0.1",
-    "redux-form": "^8.2.0"
+    "redux-form": "^8.2.0",
+    "redux-form-website-template": "^1.0.6",
+    "redux-thunk": "^2.3.0",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0"
   },
   "scripts": {
     "server": "nodemon server/index.js",

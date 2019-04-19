@@ -1,73 +1,54 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import ChangeStatus from './components/AddUser'
-
-
+import {submit} from './components/redux/actions/postaction'
 import "./App.css"
+import { Field, reduxForm } from 'redux-form';
+
+
+const renderField = ({ input, label, type, meta: { touched, error } }) => (
+  <div>
+    <label>{label}</label>
+    <div className="flexbox">
+      <input {...input} placeholder={label} type={type} />
+      {touched && error && <span>{error}</span>}
+    </div>
+  </div>
+);
 
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      firstname: '',
-      lastname: '',
-      status: 'Available',   
-      hits: [],   
-    };
-    this.onChange = this.onChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)    
-  }
-
-
-
-onChange (e) {
-  this.setState({ [e.target.name]: e.target.value });
-}
-
-  handleSubmit(event) {
-    event.preventDefault();
-
-    axios.post('http://127.0.0.1:3010/api/users', {
-      firstname: this.state.firstname,
-      lastname: this.state.lastname,
-      status: this.state.status
-    })
-    alert("User added")
-  }
-
- 
 
   render() {
-    const {firstname, lastname, status} = this.state
+    const { handleSubmit } = this.props;
     return (
-      <div>
-            <form onSubmit={this.handleSubmit}> 
-            <label>First name: </label>
-        <input
-          type="text"
-          name="firstname"
-          value={firstname}
-          onChange={this.onChange}
-        />
-         <label> Last name: </label>
-        <input
-          type="text"
-          name="lastname"
-          value={lastname}
-          onChange={this.onChange}
-        />
-         <label> Status: </label>
-        <select value={status} onChange={this.onChange} name="status">        
+      <div className="post_form">
+      <form onSubmit={handleSubmit}>
+      <Field
+        name="firstname"
+        type="text"
+        component={renderField}
+        label="firstname"
+      />
+      <Field
+        name="lastname"
+        type="text"
+        component={renderField}
+        label="lastname"
+      />
+      <label>status </label>
+        <Field name="status" component="select">
+         <option></option>
           <option value="Not Available">Not Available</option>
+          <option value="Available">Available</option>
           <option value="Vacation">Vacation</option>
-          <option  value="Available">Available</option>          
-        </select>
-        <input type="submit" value="Add User" />
-      </form>      
-      <ChangeStatus />
+        </Field>
+        <button type="submit">Submit</button>
+        </form>      
+          <ChangeStatus />
       </div>
     )}}
 
-
-    export default App
+    export default reduxForm({
+      form: 'remoteSubmit',
+      onSubmit: submit  // a unique identifier for this form
+    })(App)

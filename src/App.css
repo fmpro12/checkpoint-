@@ -2,6 +2,18 @@
   text-align: center;
 }
 
+.post_form {
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  display: flex;
+}
+
+label {
+  display: flex;
+}
 
 ul {
   margin-top: 40px;
@@ -10,12 +22,21 @@ ul {
 li{
   display: flex;
   flex-direction: row;
-  margin-top: 20px;
+  margin-top: 70px;
+}
+
+.flexbox{
+  display: flex;
+  flex-direction: row
 }
 
 .select {
   width: 150px;
+}
 
+.form_flexbox{
+  display: flex;
+  flex-direction: row;
 }
 
 .new_status{

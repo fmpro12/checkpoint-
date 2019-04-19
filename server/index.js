@@ -1,18 +1,26 @@
 
 const express = require('express')
 const bodyParser = require('body-parser')
-const server = express()
+const app = express()
 const path = require('path')
 const cors = require('cors')
 const distFolder = path.join(__dirname, '../build')
 const users = require('../server/users/server')
 
-console.log(distFolder)
-server.use(cors())
-server.use(bodyParser.json());
-server.use("/api/users/", users);
-
-server.use(express.static(distFolder))
+var http = require('http').Server(app)
 
 
-server.listen(process.env.PORT || 3010)
+
+app.use(cors())
+app.use(bodyParser.json());
+app.use("/api/users/", users);
+
+app.use(express.static(distFolder))
+
+
+
+
+
+var server = http.listen(3010, () => {
+    console.log('server is running on port', server.address().port);
+  });

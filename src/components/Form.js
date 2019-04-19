@@ -22,14 +22,12 @@ class Form extends Component {
     handleSubmit(id, e){
         e.preventDefault();
         const status = {status: this.state.status.status }
-        console.log(e)
         axios.put('http://127.0.0.1:3010/api/users/'+id, status)
         alert("Status Changed")
     }
 
     deleteUser(id, e){
         e.preventDefault();
-        console.log(e)
         axios.delete('http://127.0.0.1:3010/api/users/'+id)
         alert("User Deleted")
     }
@@ -40,8 +38,7 @@ class Form extends Component {
     }
 
     render() {
-      const {id, options} = this.props;
-      console.log(this.state);
+      const {id, options} = this.props;   
       return (
         <form className="option" onSubmit={(e) => this.handleSubmit(id, e) }>
           <Select  
