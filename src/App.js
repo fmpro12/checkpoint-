@@ -3,6 +3,7 @@ import ChangeStatus from './components/AddUser'
 import {submit} from './components/redux/actions/postaction'
 import "./App.css"
 import { Field, reduxForm } from 'redux-form';
+import RemoteSubmitButton from './components/SubmitButton'
 
 
 const renderField = ({ input, label, type, meta: { touched, error } }) => (
@@ -42,7 +43,8 @@ class App extends Component {
           <option value="Available">Available</option>
           <option value="Vacation">Vacation</option>
         </Field>
-        <button type="submit">Submit</button>
+          {/* <button type="submit">Submit</button> */}
+          <RemoteSubmitButton />
         </form>      
           <ChangeStatus />
       </div>

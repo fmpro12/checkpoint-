@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Form from './Form'
 import {fetchUsers} from "../components/redux/actions/fetchusers"
 import { connect } from "react-redux";
@@ -11,15 +10,6 @@ const options = [
 ]
 
 class ChangeStatus extends Component {
-    constructor(props) {
-      super(props);
-  
-      this.state = {
-        hits: [],
-        isLoading: false
-      }    
-
-    }
   
     componentDidMount() {
     this.props.dispatch(fetchUsers())
