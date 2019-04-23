@@ -10,13 +10,12 @@ router.get('/', (req, res) => {
  });
 
  router.post('/', (req, res) => {
-	const item = new User(req.body.values);
-    item.save((err) =>{
-        if(err)
-          sendStatus(500);
+    const item = new User(req.body.values);   
+    item.save() 
+        if(item)
+        res.send(item);
          else 
-        res.sendStatus(200);
-      })
+        res.status(404).send("Error");
     })
 
     router.put( '/:user_id', ( req, res ) => {       

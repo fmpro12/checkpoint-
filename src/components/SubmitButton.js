@@ -1,21 +1,24 @@
-import React from 'react'
+import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { submit } from 'redux-form'
-import { fetchUsers } from './redux/actions/fetchusers';
-
-const style = {
-  padding: '10px 20px',
-  width: 140,
-  display: 'block',
-  margin: '20px auto',
-  fontSize: '16px'
-}
-
-const RemoteSubmitButton = ({ dispatch }) =>
-  <button
-    type="button"
-    style={style}
-    onClick={() => dispatch(submit('remoteSubmit'), dispatch(fetchUsers()))}>Submit</button>
+import './button.css'
+import {postsubmit} from './redux/actions/postaction'
+// import { reduxForm } from 'redux-form';
+// import { submit } from 'redux-form';
 
 
-export default connect()(RemoteSubmitButton)
+
+class RemoteSubmitButton extends Component {
+  render() {
+    const {values}= this.props
+    const {dispatch} = this.props
+    console.log(values)
+    return (
+      <button
+      className="submit_button"
+        type="button"
+        onClick={() => dispatch(postsubmit(values))}>Submit</button>
+    )
+}}
+
+
+export default  connect()(RemoteSubmitButton)

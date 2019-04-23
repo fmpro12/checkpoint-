@@ -11,8 +11,9 @@ form {
   display: flex;
 }
 
-label {
-  display: flex;
+.status{
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
 ul {
@@ -30,8 +31,17 @@ li{
   flex-direction: row
 }
 
+div > label {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
 .select {
-  width: 150px;
+  width: 250px;
+}
+
+.submit_form {
+  height: 30px;
 }
 
 .form_flexbox{
@@ -42,6 +52,15 @@ li{
 .new_status{
   display:flex;
  margin-left: 60px;
+}
+
+.flexbox > input {
+  height: 20px;
+}
+
+.submit_form > div {
+  display: flex;
+  flex-direction: row;
 }
 
 .input{
