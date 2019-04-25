@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Select from 'react-select'
 import axios from 'axios'
 import './form.css'
+import { connect } from 'react-redux';
+import {deleteuser} from './redux/actions/deleteuser'
+import DeleteButton from './DeleteButton'
 
 
 const style = {
@@ -17,8 +20,9 @@ class Form extends Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.onChangeStatus = this.onChangeStatus.bind(this)
-        this.deleteUser = this.deleteUser.bind(this)
+        // this.deleteUser = this.deleteUser.bind(this)
     }    
+    
     handleSubmit(id, e){
         e.preventDefault();
         const status = {status: this.state.status.status }
@@ -26,21 +30,25 @@ class Form extends Component {
         alert("Status Changed")
     }
 
-    deleteUser(id, e){
+    // deleteUser(id, e){
+    //     e.preventDefault();
+    //     axios.delete('http://127.0.0.1:3010/api/users/'+id)
+    //     alert("User Deleted")
+    // }
+
+    deleteuser(e, id){
         e.preventDefault();
-        axios.delete('http://127.0.0.1:3010/api/users/'+id)
-        alert("User Deleted")
+        this.props.deleteuser(id)
     }
 
     onChangeStatus = event => {
-        this.setState({status: event});
-        
+        this.setState({status: event});        
     }
 
     render() {
       const {id, options} = this.props;   
       return (
-        <form className="option" onSubmit={(e) => this.handleSubmit(id, e) }>
+        <form className="option">
           <Select  
             className="select"
             style={style}
@@ -49,10 +57,17 @@ class Form extends Component {
             onChange={this.onChangeStatus}
             />
           <button type="submit"className="submit">Change Status</button>
-          <button onClick={(e) => this.deleteUser(id, e)}>Delete</button>
+          <DeleteButton id={id}/>
         </form>   
       )
     }
   }
 
-  export default Form
+  const mapDispatchToProps = (dispatch) => {
+    return {     
+      deleteuser: id => dispatch(deleteuser(id))
+    }
+  };
+  
+
+  export default connect(null, mapDispatchToProps) (Form)

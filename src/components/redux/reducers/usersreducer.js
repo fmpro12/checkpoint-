@@ -1,9 +1,9 @@
 import {  
-  POST_PRODUCTS_SUCCESS,
-  POST_PRODUCTS_FAILURE,
+  POST_PRODUCTS_SUCCESS,  
   FETCH_PRODUCTS_BEGIN,
   FETCH_PRODUCTS_SUCCESS,
-  FETCH_PRODUCTS_FAILURE
+  FETCH_PRODUCTS_FAILURE, 
+  DELETE_SUCCESS
 } from '../actions/actioncreators'
 
 
@@ -30,6 +30,12 @@ import {
           loading: false,
           hits: [...state.hits,action.payload.hits]
         };
+         
+        case DELETE_SUCCESS:
+        return Object.assign({}, {hits: state.hits.filter(item => item._id !== action.payload.hits._id),
+          loading: false,
+        })
+
 
       case FETCH_PRODUCTS_SUCCESS:
 
@@ -48,14 +54,6 @@ import {
           hits: []
         };
 
-        case POST_PRODUCTS_FAILURE:
-
-        return {
-          ...state,
-          loading: false,
-          error: action.payload.error,
-          hits: []
-        };
 
       default:
 

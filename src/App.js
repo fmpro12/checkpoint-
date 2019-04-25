@@ -86,5 +86,5 @@ class App extends Component {
 
     export default reduxForm({
       form: 'remoteSubmit',
-      onSubmit: postsubmit()  // a unique identifier for this form
+      onSubmit: postsubmit() 
     })(App)
