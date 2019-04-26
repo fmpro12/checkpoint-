@@ -4,8 +4,7 @@ import axios from 'axios'
 import './form.css'
 import { connect } from 'react-redux';
 import {deleteuser} from './redux/actions/deleteuser'
-import DeleteButton from './DeleteButton'
-
+import {changestatus} from './redux/actions/changestatus'
 
 const style = {
     witdth: 170
@@ -29,16 +28,14 @@ class Form extends Component {
         axios.put('http://127.0.0.1:3010/api/users/'+id, status)
         alert("Status Changed")
     }
-
-    // deleteUser(id, e){
-    //     e.preventDefault();
-    //     axios.delete('http://127.0.0.1:3010/api/users/'+id)
-    //     alert("User Deleted")
-    // }
-
     deleteuser(e, id){
         e.preventDefault();
         this.props.deleteuser(id)
+    }
+
+    changestatus (e, id, status){
+        e.preventDefault()
+        this.props.changestatus(id, status)
     }
 
     onChangeStatus = event => {
@@ -47,8 +44,9 @@ class Form extends Component {
 
     render() {
       const {id, options} = this.props;   
+      const {status} = this.state
       return (
-        <form className="option">
+        <div className="option">
           <Select  
             className="select"
             style={style}
@@ -56,16 +54,18 @@ class Form extends Component {
             options={options}          
             onChange={this.onChangeStatus}
             />
-          <button type="submit"className="submit">Change Status</button>
-          <DeleteButton id={id}/>
-        </form>   
+          {/* <button type="submit"className="submit">Change Status</button> */}
+          <button onClick={(e) => this.changestatus(e, id, status)}>change status</button>    
+         <button onClick={(e) => this.deleteuser(e, id)}>Delete</button>      
+        </div>   
       )
     }
   }
 
   const mapDispatchToProps = (dispatch) => {
     return {     
-      deleteuser: id => dispatch(deleteuser(id))
+      deleteuser: id => dispatch(deleteuser(id)),
+      changestatus: (id, status) => dispatch(changestatus(id, status))
     }
   };
   

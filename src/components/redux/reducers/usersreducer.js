@@ -3,7 +3,8 @@ import {
   FETCH_PRODUCTS_BEGIN,
   FETCH_PRODUCTS_SUCCESS,
   FETCH_PRODUCTS_FAILURE, 
-  DELETE_SUCCESS
+  DELETE_SUCCESS,
+  CHANGE_STATUS_SUCCESS
 } from '../actions/actioncreators'
 
 
@@ -36,9 +37,22 @@ import {
           loading: false,
         })
 
+        
+      case CHANGE_STATUS_SUCCESS: 
+       return Object.assign({}, {hits: state.hits.map(item => item._id === action.payload.hits._id? item.status: action.status.status),
+          loading: false,
+        })
+
+
+        // case CHANGE_STATUS_SUCCESS: 
+        // return {
+        //   ...state,
+        //   loading: false,
+        //   hits: [...state.hits.map(item => item.id === action.payload.hits._id? item.status : action.payload.hits.status )]
+        // };
+      
 
       case FETCH_PRODUCTS_SUCCESS:
-
         return {
           ...state,
           loading: false,

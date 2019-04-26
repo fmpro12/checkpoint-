@@ -4,6 +4,7 @@ export const FETCH_PRODUCTS_BEGIN   = 'FETCH_PRODUCTS_BEGIN';
 export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS';
 export const FETCH_PRODUCTS_FAILURE = 'FETCH_PRODUCTS_FAILURE';
 export const DELETE_SUCCESS = 'DELETE_SUCCESS';
+export const CHANGE_STATUS_SUCCESS = "CHANGE_STATUS_SUCCESS"
 
 export const postProductsSuccess = hits => ({
   type: POST_PRODUCTS_SUCCESS,
@@ -13,6 +14,12 @@ export const postProductsSuccess = hits => ({
 export const deleteUserSuccess = hits => ({
   type: DELETE_SUCCESS,
   payload: {hits}  
+})
+
+export const changeStatusSuccess = (hits, status) => ({
+  type: CHANGE_STATUS_SUCCESS,
+  payload: {hits},
+  status: status
 })
 
 export const postProductsError = error => ({
