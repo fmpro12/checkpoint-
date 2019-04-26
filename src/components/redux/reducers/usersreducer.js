@@ -38,19 +38,15 @@ import {
         })
 
         
-      case CHANGE_STATUS_SUCCESS: 
-       return Object.assign({}, {hits: state.hits.map(item => item._id === action.payload.hits._id? item.status: action.status.status),
+        case CHANGE_STATUS_SUCCESS: 
+        return {
+          ...state,
           loading: false,
-        })
-
-
-        // case CHANGE_STATUS_SUCCESS: 
-        // return {
-        //   ...state,
-        //   loading: false,
-        //   hits: [...state.hits.map(item => item.id === action.payload.hits._id? item.status : action.payload.hits.status )]
-        // };
-      
+          hits: state.hits.map(item => item._id === action.payload.hits._id? 
+            {...item, status: action.status.status} : item
+          )
+        }
+    
 
       case FETCH_PRODUCTS_SUCCESS:
         return {
