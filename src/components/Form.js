@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Select from 'react-select'
-import axios from 'axios'
 import './form.css'
 import { connect } from 'react-redux';
 import {deleteuser} from './redux/actions/deleteuser'
@@ -17,17 +16,8 @@ class Form extends Component {
         this.state = {
             status: ''
         }
-        this.handleSubmit = this.handleSubmit.bind(this)
         this.onChangeStatus = this.onChangeStatus.bind(this)
-        // this.deleteUser = this.deleteUser.bind(this)
     }    
-    
-    handleSubmit(id, e){
-        e.preventDefault();
-        const status = {status: this.state.status.status }
-        axios.put('http://127.0.0.1:3010/api/users/'+id, status)
-        alert("Status Changed")
-    }
     deleteuser(e, id){
         e.preventDefault();
         this.props.deleteuser(id)
@@ -54,7 +44,6 @@ class Form extends Component {
             options={options}          
             onChange={this.onChangeStatus}
             />
-          {/* <button type="submit"className="submit">Change Status</button> */}
           <button onClick={(e) => this.changestatus(e, id, status)}>change status</button>    
          <button onClick={(e) => this.deleteuser(e, id)}>Delete</button>      
         </div>   
