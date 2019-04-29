@@ -7,7 +7,6 @@ const cors = require('cors')
 const distFolder = path.join(__dirname, '../build')
 const users = require('../server/users/server')
 
-var http = require('http').Server(app)
 
 
 
@@ -20,7 +19,5 @@ app.use(express.static(distFolder))
 
 
 
+app.listen(process.env.PORT || 3010)
 
-var server = http.listen(3010, () => {
-    console.log('server is running on port', server.address().port);
-  });

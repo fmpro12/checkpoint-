@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
-import Select from 'react-select'
+import Select, { components } from 'react-select';
 import './form.css'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 import {deleteuser} from './redux/actions/deleteuser'
 import {changestatus} from './redux/actions/changestatus'
+import Tooltip from '@atlaskit/tooltip'
 
-const style = {
-    witdth: 170
-}
+
+const SelectContainer = ({ children, ...props }) => {
+    return (
+      <Tooltip content={'customise your select container'} delay={0}>
+        <components.SelectContainer {...props}>
+          {children}
+        </components.SelectContainer>
+      </Tooltip>
+    );
+  };
+
 
 class Form extends Component {
     constructor(props) {
@@ -38,9 +47,11 @@ class Form extends Component {
       return (
         <div className="option">
           <Select  
+            closeMenuOnSelect={true}
+            components={{ SelectContainer }}
             className="select"
-            style={style}
-            value={this.state.status}
+            styles={{ container: (base) => ({ ...base, backgroundColor: { value: 'Red', label: 'Red', color: '#FF5630', disabled: true }, padding: 5 }) }}
+            value={this.state.status}            
             options={options}          
             onChange={this.onChangeStatus}
             />
