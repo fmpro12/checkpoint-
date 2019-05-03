@@ -26,7 +26,8 @@
     "socket.io-client": "^2.2.0"
   },
   "scripts": {
-    "start": "concurrently \"npm i\" \"npm run build\" \"npm run server\"",
+    "start": "nodemon server/index.js",
+    "postinstall": "npm run build",
     "server": "nodemon server/index.js",
     "client": "react-scripts start",
     "react": "concurrently \"npm run build\" \"npm run server\" \"npm run client\"",
