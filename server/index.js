@@ -21,6 +21,6 @@ app.use(express.static(distFolder))
 
 
 
-var server = http.listen(3010, () => {
+var server = http.listen(process.env.PORT || 3010, () => {
     console.log('server is running on port', server.address().port);
   });
