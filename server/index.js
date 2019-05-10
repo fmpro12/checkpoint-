@@ -15,9 +15,9 @@ app.use(cors())
 app.use(bodyParser.json());
 app.use("/api/users/", users);
 
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, '../build/index.html'));
-});
+// app.get('/', function(req, res) {
+//   res.sendFile(path.join(__dirname, '../build/index.html'));
+// });
 
 
 app.use(express.static(distFolder))
@@ -26,6 +26,6 @@ app.use(express.static(distFolder))
 
 
 
-var server = http.listen(process.env.PORT, () => {
+var server = http.listen(process.env.PORT || 3010, () => {
     console.log('server is running on port', server.address().port);
   });
