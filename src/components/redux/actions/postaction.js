@@ -5,7 +5,7 @@ import {fetchProductsBegin, fetchProductsError, postProductsSuccess} from './act
 export function postsubmit(values) {  
       return dispatch => {
         dispatch(fetchProductsBegin());
-        return axios.post('http://127.0.0.1:3010/api/users', {values})        
+        return axios.post('/api/users', {values})        
           .then(json => {    
             dispatch(postProductsSuccess(json.data));
             return json;
